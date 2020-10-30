@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/StartService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="녹화 시작"
+        app:layout_constraintStart_toStartOf="@+id/surfaceView1"
+        app:layout_constraintTop_toTopOf="@+id/surfaceView1" />
+
+    <SurfaceView
+        android:id="@+id/surfaceView1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/StopService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="녹화 종료"
+        app:layout_constraintStart_toEndOf="@+id/StartService"
+        app:layout_constraintTop_toTopOf="@+id/surfaceView1" />
+
+    <Button
+        android:id="@+id/SettingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="4dp"
+        android:text="설정"
+        app:layout_constraintEnd_toEndOf="@+id/surfaceView1"
+        app:layout_constraintTop_toTopOf="@+id/surfaceView1" />
+
+    <Button
+        android:id="@+id/cameraFacingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:text="전면"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="@+id/surfaceView1"
+        app:layout_constraintTop_toBottomOf="@+id/SettingBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/galleryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="갤러리 열기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cameraFacingBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartService"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/timeTxt"
+        android:layout_width="94dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="100dp"
+        android:text="00:00"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cameraFacingBtn"
+        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintStart_toEndOf="@+id/galleryBtn"
+        app:layout_constraintTop_toBottomOf="@+id/StopService"
+        app:layout_constraintVertical_bias="0.986" />
+</androidx.constraintlayout.widget.ConstraintLayout>
