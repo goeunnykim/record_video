@@ -27,7 +27,7 @@ public class RecorderService extends Service {
     private SurfaceHolder mSurfaceHolder;
     //private static Camera mServiceCamera;
     //private boolean mRecordingStatus;
-    //private MediaRecorder mMediaRecorder;
+    //private MediaRecorder mMediaRecorder;//
     public static Context mContext;
 
     public static Camera mServiceCamera;
