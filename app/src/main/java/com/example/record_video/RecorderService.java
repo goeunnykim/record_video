@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
+import android.hardware.camera2.CameraDevice;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Handler;
@@ -27,7 +28,7 @@ public class RecorderService extends Service {
     private SurfaceHolder mSurfaceHolder;
     //private static Camera mServiceCamera;
     //private boolean mRecordingStatus;
-    //private MediaRecorder mMediaRecorder;//
+    //private MediaRecorder mMediaRecorder;
     public static Context mContext;
 
     public static Camera mServiceCamera;
@@ -41,6 +42,8 @@ public class RecorderService extends Service {
 
     private int camFacing = MainActivity.camFacing;
     private int quality = SettingQualityActivity.quality;
+    private int camHeight = SettingQualityActivity.videoFrameHeight;
+    private int camWidth = SettingQualityActivity.videoFrameWidth;
 
     Thread thread;
     int sec = 0;
@@ -117,7 +120,7 @@ public class RecorderService extends Service {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
             String dateStr = sdf.format(cal.getTime());
             videoName = dateStr+".mp4";
-            Str_Path = "/sdcard/DCIM/";//DesignApp/";
+            Str_Path = "/sdcard/DCIM/DesignApp/";
 
             mServiceCamera.unlock();
 
@@ -150,8 +153,8 @@ public class RecorderService extends Service {
             profile.videoCodec = MediaRecorder.VideoEncoder.MPEG_4_SP;
             profile.audioCodec = MediaRecorder.AudioEncoder.DEFAULT;
             profile.videoFrameRate = 20;
-            profile.videoFrameHeight = SettingQualityActivity.videoFrameHeight;//480;//mPreviewSize.height;
-            profile.videoFrameWidth = SettingQualityActivity.videoFrameWidth;//640;//mPreviewSize.width;
+            profile.videoFrameHeight = camHeight;//SettingQualityActivity.videoFrameHeight;//480;//mPreviewSize.height;
+            profile.videoFrameWidth = camWidth;//SettingQualityActivity.videoFrameWidth;//640;//mPreviewSize.width;
             Log.d("result==height",String.valueOf(SettingQualityActivity.videoFrameHeight));
             Log.d("result==width",String.valueOf(SettingQualityActivity.videoFrameWidth));
             profile.videoBitRate = 15;
@@ -252,7 +255,6 @@ public class RecorderService extends Service {
     class Thread extends java.lang.Thread{
         boolean stopped;
 
-
         private Handler handler = new Handler();
 
         public Thread(){
@@ -298,4 +300,30 @@ public class RecorderService extends Service {
         //isStop = true;
         return super.onUnbind(intent);
     }
+
+    private CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
+
+        @Override
+        public void onOpened(CameraDevice camera) {
+            // TODO Auto-generated method stub
+            Log.e(TAG, "onOpened");
+            //mCameraDevice = camera;
+            //startPreview();
+            Toast.makeText(getApplicationContext(),"onOpened",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onDisconnected(CameraDevice camera) {
+            // TODO Auto-generated method stub
+            Log.e(TAG, "onDisconnected");
+            Toast.makeText(getApplicationContext(),"ondis",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(CameraDevice camera, int error) {
+            // TODO Auto-generated method stub
+            Log.e(TAG, "onError");
+            Toast.makeText(getApplicationContext(),"onerror",Toast.LENGTH_SHORT).show();
+        }
+    };
 }

@@ -32,7 +32,6 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements SurfaceHolder.Callback {
@@ -71,14 +70,13 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
         @Override
         public void run(){
-
             while(running){
                 if(binder == null){
                     continue;
                 }
-                handler.post(new Runnable() {
+                handler.post(new Runnable(){
                     @Override
-                    public void run() {
+                    public void run(){
                         try {
                             crrTime = binder.getTime();
                             minuteT = (crrTime/60);
